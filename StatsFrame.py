@@ -10,6 +10,9 @@ class StatsFrame(QFrame, PopUpNotificationsImporter):
     Клас відповідає за формування вікна статистики
     """
     def __init__(self, parent=None):
+        """
+        :param parent: об'єкт, до якого буде прив'язаний фрейм статистики
+        """
         super(StatsFrame, self).__init__(parent)
         self.setGeometry(QRect(151, 40, 851, 560))
         self.setStyleSheet("background-color: rgb(222, 222, 222);")
@@ -209,7 +212,7 @@ class StatsFrame(QFrame, PopUpNotificationsImporter):
         Метод виконує підрахунок середнього часу використання кожного комп'ютера за періодом
         :param datetime_start: початок періоду
         :param datetime_end: кінець періоду
-        :return: list, [успішність операції (bool), середній час використання комп'ютерів у секундах,
+        :return: list - [успішність операції (bool), середній час використання комп'ютерів у секундах,
                         кількість унікальних сесій]
         """
         query = f"""SELECT COUNT(DISTINCT [ID комп'ютера])
@@ -244,7 +247,7 @@ class StatsFrame(QFrame, PopUpNotificationsImporter):
         Метод виконує підрахунок середнього часу використання кожного комп'ютера за періодом
         :param datetime_start: початок періоду
         :param datetime_end: кінець періоду
-        :return: list, [успішність операції (bool), середній час використання комп'ютерів, кількість сесій]
+        :return: list - [успішність операції (bool), середній час використання комп'ютерів у секундах, кількість сесій]
         """
         query = f"""SELECT COUNT(*) AS session_count
                     FROM [Входи/Виходи]
@@ -278,7 +281,7 @@ class StatsFrame(QFrame, PopUpNotificationsImporter):
         Метод виконує підрахунок загальний час використання комп'ютерів за періодом
         :param datetime_start: початок періоду
         :param datetime_end: кінець періоду
-        :return: list, [успішність операції (bool), загальний час використання комп'ютерів у секундах]
+        :return: list - [успішність операції (bool), загальний час використання комп'ютерів у секундах]
         """
         query = f"""SELECT
                     SUM(
@@ -350,7 +353,7 @@ class StatsFrame(QFrame, PopUpNotificationsImporter):
         Метод знаходить найбільш активний на тривалості запущених сесій день
         :param datetime_start: початок періоду
         :param datetime_end: кінець періоду
-        :return: list, [успішність операції (bool), найактивніший день, загальна тривалість сесій запущених цього дня]
+        :return: list - [успішність операції (bool), найактивніший день, загальна тривалість сесій запущених цього дня]
         """
         query = f"""SELECT [Дата входу],
                         SUM(strftime('%s', datetime([Дата виходу] || ' ' || [Час виходу])) - 
@@ -383,7 +386,7 @@ class StatsFrame(QFrame, PopUpNotificationsImporter):
         """
         Метод переводить секунди у ГГ:ХВ
         :param seconds: кількість секунд
-        :return: значення годин та хвилин
+        :return: str - значення годин та хвилин
         """
         hours = int(seconds // 3600)
         minutes = int((seconds % 3600) // 60)
@@ -394,7 +397,7 @@ class StatsFrame(QFrame, PopUpNotificationsImporter):
         """
         Метод переводить секунди у ГГ:ХВ:СС
         :param seconds: кількість секунд
-        :return: значення годин, хвилин та секунд
+        :return: str - значення годин, хвилин та секунд
         """
         hours = int(seconds // 3600)
         minutes = int((seconds % 3600) // 60)
