@@ -6,6 +6,10 @@ class FieldSelectionDialog(QDialog):
     Клас відповідає за формування вікна вибору полів для відображення
     """
     def __init__(self, column_names, parent=None):
+        """
+        :param column_names: назви полів таблиці
+        :param parent: об'єкт, до якого буде прив'язане діалогове вікно 
+        """
         super(FieldSelectionDialog, self).__init__(parent)
         self.setWindowTitle("Оберіть поля")
         self.setModal(True)
@@ -29,6 +33,6 @@ class FieldSelectionDialog(QDialog):
     def get_selected_fields(self):
         """
         Метод повертає назви обраних полів для відображення
-        :return: повертає імена (або ключі) тих елементів, чекбокси яких встановлені
+        :return: повертає імена (ключі) тих елементів, чекбокси яких встановлені
         """
         return [column_name for column_name, checkbox in self.__checkbox_dict.items() if checkbox.isChecked()]
