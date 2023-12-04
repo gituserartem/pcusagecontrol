@@ -11,7 +11,7 @@ class PopUpNotificationsImporter:
         Показ інформаційного повідомлення
         :param title: назва вікна
         :param message: повідомлення
-        :return:
+        :return: None
         """
         error = QMessageBox()
         error.setWindowTitle(title)
@@ -26,7 +26,7 @@ class PopUpNotificationsImporter:
         """
         Показ попереджувального повідомлення
         :param message: повідомлення
-        :return:
+        :return: None
         """
         error = QMessageBox()
         error.setWindowTitle("Помилка")
@@ -41,7 +41,7 @@ class PopUpNotificationsImporter:
         """
         Показ повідомлення про успіх
         :param message: повідомлення
-        :return:
+        :return: None
         """
         msg_box = QMessageBox()
         msg_box.setWindowTitle("Успішне завершення операції")
@@ -55,7 +55,7 @@ class PopUpNotificationsImporter:
         """
         Показ повідомлення про помилку
         :param message: повідомлення
-        :return:
+        :return: None
         """
         error = QMessageBox()
         error.setWindowTitle("Помилка")
